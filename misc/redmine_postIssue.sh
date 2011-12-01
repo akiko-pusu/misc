@@ -10,13 +10,6 @@
 # http://www.r-labs.org/projects/r-labs/wiki/Redmine_REST_API
 #
 #-----------------------------------------------------------------------------
-#
-#
-# Wrapper for sending the results of an arbitrary script to Jenkins for
-# monitoring. 
-#
-# Usage: 
-#   redmine_postIssue.sh <redmine_url> <api_key> <script>
 
 USAGE="usage: $0 [-u|--url redmine_url] [-k|--key api_key] [-p|--project_id project_id] [-t|--tracker_id tracker_id] [-s|--subject \"issue subject\"] [-d|--description \"issue description\"]"
 
