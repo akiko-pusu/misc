@@ -4,6 +4,9 @@
 # RedmineのREST APIを利用して、curlを経由してチケットを作成するためのShell scriptです。
 # Perlとcurlが利用できることが前提済みです。
 #
+# curl -d オプションを利用しますが、debian / ubuntuの場合は --data-binary に置き換えていただくと良さそうです。
+#
+#
 # Redmineの認証用に、API Keyを必要とします。
 # Keyに関しては、下記を参照して下さい。
 # 
@@ -89,7 +92,7 @@ echo "<subject>${SUBJECT}</subject>" >> $CURLTEMP
 echo "<description>${DESCRIPTION}</description>" >> $CURLTEMP
 echo "</issue>" >> $CURLTEMP
 
-curl -o result.xml -s -H "Content-type: text/xml" -X POST -d "@${CURLTEMP}" "${REDMINE_URL}/issues.xml?key=${API_KEY} > result"
+curl -o result.xml -s -H "Content-type: text/xml" -X POST --data-binary "@${CURLTEMP}" "${REDMINE_URL}/issues.xml?key=${API_KEY} > result"
 ISSUE_ID=`perl -ne 'if(/<issue><id>([0-9]+)<\/id>/) { print $1; } ' result.xml`
 
 if [ -z "$ISSUE_ID" ]; then
